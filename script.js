@@ -215,7 +215,7 @@ const systemsData = [
     systems: [
       {
         name: "BLUESUN 5KW",
-        description: "INVERSOR SPLIT PHASE 5KW (PV INPUT 2880W) + 1 BATERIA LITIO LIFEPO4 LITIO 10.85KWH",
+        description: "INVERSOR SPLIT PHASE 5KW (PV INPUT 2880W) + 1 BATERIA LIFEPO4 LITIO 10.85KWH",
         roi: null,
         type: "Sistema de Respaldo",
         price: 3989.0,
@@ -361,14 +361,14 @@ const systemsData = [
         produccionAnual: 6480,
       },
       {
-        name: "SOSEN 10 KW+ 10 PANELES",
+        name: "SOSEN 10 KW+ 20 PANELES",
         description:
-          "INVERSOR SPLIT PHASE 10KW (PV INPUT 15000W) + 1 BATERIA LITIO LIFEPO4 10KWH + SISTEMA DE 10 PANELES",
+          "INVERSOR SPLIT PHASE 10KW (PV INPUT 15000W) + 1 BATERIA LITIO LIFEPO4 10KWH + SISTEMA DE 20 PANELES",
         roi: null,
         type: "Sistema de Ahorro + Respaldo",
-        price: 9549.0,
+        price: 11769.0,
         priceWithIVA: null,
-        panels: 10,
+        panels: 20,
         monthlySavings: 520,
         annualSavings: 6240,
         produccionMensual: 540,
@@ -2226,6 +2226,26 @@ function mostrarSistemasRecomendados(consumo) {
             }
             ${
               sistema.type === "Sistema de Respaldo"
+                ? `
+              <div class="emergency-message off-grid">
+                <div class="emergency-icon">
+                  <i class="fas fa-battery-full"></i>
+                </div>
+                <div class="emergency-content">
+                  <h4>Sistema de Respaldo Inteligente</h4>
+                    <p>Respaldo automático durante cortes de luz</p>
+                    <p>Energía solar gratuita durante el día</p>
+                    <p>Batería de litio de larga duración</p>
+                    <p>Reduce dependencia de la red eléctrica</p>
+                    <br><br><br><br>
+                  
+                </div>
+              </div>
+            `
+                : ""
+            }
+            ${
+              sistema.type === "POWER STATION"
                 ? `
               <div class="emergency-message off-grid">
                 <div class="emergency-icon">
