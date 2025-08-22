@@ -261,6 +261,15 @@
         </div>
     </main>
 
+    <!-- Agregando modal para mostrar imágenes ampliadas de los productos -->
+    <div id="modalImagen" class="modal-imagen" style="display: none;">
+        <div class="modal-imagen-content">
+            <span class="modal-imagen-close" onclick="cerrarModalImagen()">&times;</span>
+            <img id="imagenModal" class="modal-imagen-img">
+            <div id="captionModal" class="modal-imagen-caption"></div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

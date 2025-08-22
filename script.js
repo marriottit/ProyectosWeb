@@ -34,6 +34,7 @@ const systemsData = [
         // Nuevos campos para cálculo FTV
         produccionMensual: 0, // kWh que produce el sistema por mes
         produccionAnual: 0, // kWh que produce el sistema por año
+        img: "https://almacenesmarriott.com/wp-content/uploads/2023/12/O17004__2.jpg",
       },
     ],
   },
@@ -52,6 +53,7 @@ const systemsData = [
         annualSavings: 0,
         produccionMensual: 0,
         produccionAnual: 0,
+        img: "https://almacenesmarriott.com/wp-content/uploads/2023/12/O17004__2.jpg",
       },
     ],
   },
@@ -70,6 +72,7 @@ const systemsData = [
         annualSavings: 0,
         produccionMensual: 0,
         produccionAnual: 0,
+        img: "https://almacenesmarriott.com/wp-content/uploads/2025/07/P81026.jpg",
       },
     ],
   },
@@ -88,6 +91,7 @@ const systemsData = [
         annualSavings: 960,
         produccionMensual: 0,
         produccionAnual: 0,
+        img: "https://i.ibb.co/pvgBW8Fz/1kw.jpg",
       },
     ],
   },
@@ -96,29 +100,17 @@ const systemsData = [
     systems: [
       {
         name: "BLUESUN 3KW",
-        description: "INVERSOR SPLIT PHASE 3KW (PV INPUT 2880W) + 1 BATERIA LIFEPO4 LITIO 5.12KWH",
+        description: "INVERSOR SPLIT PHASE 3KW + BATERIA LITIO LIFEPO4 5.12KWH",
         roi: null,
-        type: "Sistema de Respaldo",
-        price: 2589.0,
+        type: "Sistema de Ahorro + Respaldo",
+        price: 2150.0,
         priceWithIVA: null,
-        panels: null,
-        monthlySavings: 150,
-        annualSavings: 1800,
+        panels: 4,
+        monthlySavings: 120,
+        annualSavings: 1440,
         produccionMensual: 0,
         produccionAnual: 0,
-      },
-      {
-        name: "SOSEN 5K",
-        description: "INVERSOR SINGLE PHASE 5KW PV (INPUT 5000W) + 1 BATERIA LITIO LIFEPO4 5KWH",
-        roi: null,
-        type: "Sistema de Respaldo",
-        price: 2589.0,
-        priceWithIVA: null,
-        panels: null,
-        monthlySavings: 180,
-        annualSavings: 2160,
-        produccionMensual: 0,
-        produccionAnual: 0,
+        img: "https://i.ibb.co/pvgBW8Fz/1kw.jpg", // Using same image for now, should be updated with correct 3KW image
       },
     ],
   },
@@ -137,6 +129,7 @@ const systemsData = [
         annualSavings: 1800,
         produccionMensual: 0,
         produccionAnual: 0,
+        img: "https://i.ibb.co/RTXG2Nvb/SISTEMA-OFF-GRID-INVERSOR-SPLIT-PHASE-3-KW-PV-INPUT-2880-W-1-BATERIA-LIFEPO4-LITIO-5-12-KWH.png",
       },
       {
         name: "AIO 6KW - 10 kWh",
@@ -150,6 +143,7 @@ const systemsData = [
         annualSavings: 2640,
         produccionMensual: 0,
         produccionAnual: 0,
+        img: "https://i.ibb.co/8gM6Fjd6/SISTEMA-ALL-IN-ONE-INVERSOR-SPLIT-PHASE-6-KW-PV-INPUT-3000-W-C-BATERIA-LITIO-LIFEPO4-10-KWH.png",
       },
       {
         name: "SOSEN 5K",
@@ -163,6 +157,7 @@ const systemsData = [
         annualSavings: 2160,
         produccionMensual: 0,
         produccionAnual: 0,
+        img: "https://i.ibb.co/7xQF7j9k/SISTEMA-OFF-GRID-INVERSOR-SINGLE-PHASE-5-KW-PV-INPUT-5000-W-1-BATERIA-LITIO-LIFEPO4-5-KWH.png",
       },
     ],
   },
@@ -181,6 +176,7 @@ const systemsData = [
         annualSavings: 3000,
         produccionMensual: 0,
         produccionAnual: 0,
+        img: "https://i.ibb.co/7dwpcP9V/SISTEMA-OFF-GRID-INVERSOR-SPLIT-PHASE-5-KW-PV-INPUT-2880-W-1-BATERIA-LITIO-LIFEPO4-10-85-KWH.png",
       },
       {
         name: "AIO 6KW - 10 kWh",
@@ -194,6 +190,7 @@ const systemsData = [
         annualSavings: 2640,
         produccionMensual: 0,
         produccionAnual: 0,
+        img: "https://i.ibb.co/8gM6Fjd6/SISTEMA-ALL-IN-ONE-INVERSOR-SPLIT-PHASE-6-KW-PV-INPUT-3000-W-C-BATERIA-LITIO-LIFEPO4-10-KWH.png",
       },
       {
         name: "SOSEN 5K",
@@ -207,6 +204,7 @@ const systemsData = [
         annualSavings: 2160,
         produccionMensual: 0,
         produccionAnual: 0,
+        img: "https://i.ibb.co/7xQF7j9k/SISTEMA-OFF-GRID-INVERSOR-SINGLE-PHASE-5-KW-PV-INPUT-5000-W-1-BATERIA-LITIO-LIFEPO4-5-KWH.png",
       },
     ],
   },
@@ -225,6 +223,7 @@ const systemsData = [
         annualSavings: 3000,
         produccionMensual: 0,
         produccionAnual: 0,
+        img: "https://i.ibb.co/7dwpcP9V/SISTEMA-OFF-GRID-INVERSOR-SPLIT-PHASE-5-KW-PV-INPUT-2880-W-1-BATERIA-LITIO-LIFEPO4-10-85-KWH.png",
       },
       {
         name: "AIO 6KW - 15 kWh",
@@ -238,6 +237,7 @@ const systemsData = [
         annualSavings: 3360,
         produccionMensual: 0,
         produccionAnual: 0,
+        img: "https://i.ibb.co/0pMcLHH1/SISTEMA-ALL-IN-ONE-INVERSOR-SPLIT-PHASE-6-KW-PV-INPUT-3000-W-C-BATERIA-LITIO-LIFEPO4-15-KW.png",
       },
       {
         name: "SOSEN 5K",
@@ -251,6 +251,7 @@ const systemsData = [
         annualSavings: 2160,
         produccionMensual: 0,
         produccionAnual: 0,
+        img: "https://i.ibb.co/7xQF7j9k/SISTEMA-OFF-GRID-INVERSOR-SINGLE-PHASE-5-KW-PV-INPUT-5000-W-1-BATERIA-LITIO-LIFEPO4-5-KWH.png",
       },
     ],
   },
@@ -269,6 +270,7 @@ const systemsData = [
         annualSavings: 3840,
         produccionMensual: 324, // 3.9 kWp * 1080 kWh/kWp/año / 12 meses = 324 kWh/mes
         produccionAnual: 3888, // 3.6 kWp * 1080 kWh/kWp/año = 3888 kWh/año
+        img: "https://i.ibb.co/RTXG2Nvb/SISTEMA-OFF-GRID-INVERSOR-SPLIT-PHASE-3-KW-PV-INPUT-2880-W-1-BATERIA-LIFEPO4-LITIO-5-12-KWH.png",
       },
       {
         name: "BLUESUN 5KW + 4 PANELES",
@@ -283,6 +285,7 @@ const systemsData = [
         annualSavings: 4200,
         produccionMensual: 0,
         produccionAnual: 0,
+        img: "https://i.ibb.co/7dwpcP9V/SISTEMA-OFF-GRID-INVERSOR-SPLIT-PHASE-5-KW-PV-INPUT-2880-W-1-BATERIA-LITIO-LIFEPO4-10-85-KWH.png",
       },
       {
         name: "AIO 6KW - 15 kWh",
@@ -296,6 +299,7 @@ const systemsData = [
         annualSavings: 3360,
         produccionMensual: 0,
         produccionAnual: 0,
+        img: "https://i.ibb.co/0pMcLHH1/SISTEMA-ALL-IN-ONE-INVERSOR-SPLIT-PHASE-6-KW-PV-INPUT-3000-W-C-BATERIA-LITIO-LIFEPO4-15-KW.png",
       },
     ],
   },
@@ -314,6 +318,7 @@ const systemsData = [
         annualSavings: 5400,
         produccionMensual: 540, // 6.5 kWp * 1080 kWh/kWp/año / 12 meses = 540 kWh/mes
         produccionAnual: 6480, // 6.0 kWp * 1080 kWh/kWp/año = 6480 kWh/año
+        img: "https://i.ibb.co/7xQF7j9k/SISTEMA-OFF-GRID-INVERSOR-SINGLE-PHASE-5-KW-PV-INPUT-5000-W-1-BATERIA-LITIO-LIFEPO4-5-KWH.png",
       },
       {
         name: "BLUESUN 5KW + 4 PANELES",
@@ -328,6 +333,7 @@ const systemsData = [
         annualSavings: 4200,
         produccionMensual: 0,
         produccionAnual: 0,
+        img: "https://i.ibb.co/7dwpcP9V/SISTEMA-OFF-GRID-INVERSOR-SPLIT-PHASE-5-KW-PV-INPUT-2880-W-1-BATERIA-LITIO-LIFEPO4-10-85-KWH.png",
       },
       {
         name: "AIO 6KW - 15 kWh",
@@ -341,6 +347,7 @@ const systemsData = [
         annualSavings: 3360,
         produccionMensual: 0,
         produccionAnual: 0,
+        img: "https://i.ibb.co/0pMcLHH1/SISTEMA-ALL-IN-ONE-INVERSOR-SPLIT-PHASE-6-KW-PV-INPUT-3000-W-C-BATERIA-LITIO-LIFEPO4-15-KW.png",
       },
     ],
   },
@@ -359,6 +366,7 @@ const systemsData = [
         annualSavings: 5400,
         produccionMensual: 540,
         produccionAnual: 6480,
+        img: "https://i.ibb.co/7xQF7j9k/SISTEMA-OFF-GRID-INVERSOR-SINGLE-PHASE-5-KW-PV-INPUT-5000-W-1-BATERIA-LITIO-LIFEPO4-5-KWH.png",
       },
       {
         name: "SOSEN 10 KW+ 20 PANELES",
@@ -373,6 +381,7 @@ const systemsData = [
         annualSavings: 6240,
         produccionMensual: 540,
         produccionAnual: 6480,
+        img: "https://i.ibb.co/KxhZ8TT5/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-10-KW-PV-INPUT-15000-W-1-BATERIA-LITIO-LIFEPO4-10-KWH.png",
       },
       {
         name: "AIO 6KW - 15 kWh",
@@ -386,6 +395,7 @@ const systemsData = [
         annualSavings: 6960,
         produccionMensual: 0,
         produccionAnual: 0,
+        img: "https://i.ibb.co/0pMcLHH1/SISTEMA-ALL-IN-ONE-INVERSOR-SPLIT-PHASE-6-KW-PV-INPUT-3000-W-C-BATERIA-LITIO-LIFEPO4-15-KW.png",
       },
     ],
   },
@@ -404,6 +414,7 @@ const systemsData = [
         annualSavings: 5400,
         produccionMensual: 540,
         produccionAnual: 6480,
+        img: "https://i.ibb.co/7xQF7j9k/SISTEMA-OFF-GRID-INVERSOR-SINGLE-PHASE-5-KW-PV-INPUT-5000-W-1-BATERIA-LITIO-LIFEPO4-5-KWH.png",
       },
       {
         name: "SOSEN 10 KW + 15 PANELES",
@@ -418,6 +429,7 @@ const systemsData = [
         annualSavings: 7800,
         produccionMensual: 810, // 9.0 kWp * 1080 kWh/kWp/año / 12 meses = 810 kWh/mes
         produccionAnual: 9720, // 9.0 kWp * 1080 kWh/kWp/año = 9720 kWh/año
+        img: "https://i.ibb.co/KxhZ8TT5/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-10-KW-PV-INPUT-15000-W-1-BATERIA-LITIO-LIFEPO4-10-KWH.png",
       },
       {
         name: "SOSEN FOX 11KW + 15 PANELES",
@@ -432,6 +444,7 @@ const systemsData = [
         annualSavings: 8640,
         produccionMensual: 810,
         produccionAnual: 9720,
+        img: "https://i.ibb.co/XkZdFr02/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-11-4-KW-PV-INPUT-17000-W-2-BATERIAS-LITIO-LIFEPO4-11-KWH.png",
       },
     ],
   },
@@ -450,6 +463,7 @@ const systemsData = [
         annualSavings: 10200,
         produccionMensual: 1080, // 12.0 kWp * 1080 kWh/kWp/año / 12 meses = 1080 kWh/mes
         produccionAnual: 12960, // 12.0 kWp * 1080 kWh/kWp/año = 12960 kWh/año
+        img: "https://i.ibb.co/KxhZ8TT5/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-10-KW-PV-INPUT-15000-W-1-BATERIA-LITIO-LIFEPO4-10-KWH.png",
       },
       {
         name: "SOSEN FOX 11KW  + 20 PANELES",
@@ -464,6 +478,7 @@ const systemsData = [
         annualSavings: 11040,
         produccionMensual: 1080,
         produccionAnual: 12960,
+        img: "https://i.ibb.co/XkZdFr02/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-11-4-KW-PV-INPUT-17000-W-2-BATERIAS-LITIO-LIFEPO4-11-KWH.png",
       },
       {
         name: "SOSEN 15 KW + 20 PANELES",
@@ -478,6 +493,7 @@ const systemsData = [
         annualSavings: 11040,
         produccionMensual: 1080,
         produccionAnual: 12960,
+        img: "https://i.ibb.co/fGY2LRwd/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-15-KW-PV-INPUT-22500-W-1-BATERIA-LITIO-LIFEPO4-15-KWH.png",
       },
     ],
   },
@@ -496,6 +512,7 @@ const systemsData = [
         annualSavings: 10200,
         produccionMensual: 1080,
         produccionAnual: 12960,
+        img: "https://i.ibb.co/KxhZ8TT5/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-10-KW-PV-INPUT-15000-W-1-BATERIA-LITIO-LIFEPO4-10-KWH.png",
       },
       {
         name: "SOSEN FOX 11KW  + 20 PANELES",
@@ -510,6 +527,7 @@ const systemsData = [
         annualSavings: 10200,
         produccionMensual: 1080,
         produccionAnual: 12960,
+        img: "https://i.ibb.co/XkZdFr02/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-11-4-KW-PV-INPUT-17000-W-2-BATERIAS-LITIO-LIFEPO4-11-KWH.png",
       },
       {
         name: "SOSEN 15 KW + 20 PANELES",
@@ -524,6 +542,7 @@ const systemsData = [
         annualSavings: 11040,
         produccionMensual: 1080,
         produccionAnual: 12960,
+        img: "https://i.ibb.co/fGY2LRwd/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-15-KW-PV-INPUT-22500-W-1-BATERIA-LITIO-LIFEPO4-15-KWH.png",
       },
     ],
   },
@@ -542,6 +561,7 @@ const systemsData = [
         annualSavings: 10200,
         produccionMensual: 1080,
         produccionAnual: 12960,
+        img: "https://i.ibb.co/KxhZ8TT5/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-10-KW-PV-INPUT-15000-W-1-BATERIA-LITIO-LIFEPO4-10-KWH.png",
       },
       {
         name: "SOSEN FOX 11KW  + 20 PANELES",
@@ -556,6 +576,7 @@ const systemsData = [
         annualSavings: 10200,
         produccionMensual: 1080,
         produccionAnual: 12960,
+        img: "https://i.ibb.co/XkZdFr02/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-11-4-KW-PV-INPUT-17000-W-2-BATERIAS-LITIO-LIFEPO4-11-KWH.png",
       },
       {
         name: "SOSEN 15 KW + 20 PANELES",
@@ -570,6 +591,7 @@ const systemsData = [
         annualSavings: 11040,
         produccionMensual: 1080,
         produccionAnual: 12960,
+        img: "https://i.ibb.co/fGY2LRwd/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-15-KW-PV-INPUT-22500-W-1-BATERIA-LITIO-LIFEPO4-15-KWH.png",
       },
     ],
   },
@@ -588,6 +610,7 @@ const systemsData = [
         annualSavings: 12600,
         produccionMensual: 1296, // 14.4 kWp * 1080 kWh/kWp/año / 12 meses = 1296 kWh/mes
         produccionAnual: 15552, // 14.4 kWp * 1080 kWh/kWp/año = 15552 kWh/año
+        img: "https://i.ibb.co/KxhZ8TT5/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-10-KW-PV-INPUT-15000-W-1-BATERIA-LITIO-LIFEPO4-10-KWH.png",
       },
       {
         name: "SOSEN FOX 11KW  + 30 PANELES",
@@ -602,6 +625,7 @@ const systemsData = [
         annualSavings: 14400,
         produccionMensual: 1620, // 18.0 kWp * 1080 kWh/kWp/año / 12 meses = 1620 kWh/mes
         produccionAnual: 19440, // 18.0 kWp * 1080 kWh/kWp/año = 19440 kWh/año
+        img: "https://i.ibb.co/XkZdFr02/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-11-4-KW-PV-INPUT-17000-W-2-BATERIAS-LITIO-LIFEPO4-11-KWH.png",
       },
       {
         name: "SOSEN 15 KW + 30 PANELES",
@@ -616,6 +640,7 @@ const systemsData = [
         annualSavings: 14400,
         produccionMensual: 1620,
         produccionAnual: 19440,
+        img: "https://i.ibb.co/fGY2LRwd/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-15-KW-PV-INPUT-22500-W-1-BATERIA-LITIO-LIFEPO4-15-KWH.png",
       },
     ],
   },
@@ -634,6 +659,7 @@ const systemsData = [
         annualSavings: 21600,
         produccionMensual: 2592, // 28.8 kWp * 1080 kWh/kWp/año / 12 meses = 2592 kWh/mes
         produccionAnual: 31104, // 28.8 kWp * 1080 kWh/kWp/año = 31104 kWh/año
+        img: "https://i.ibb.co/KxhZ8TT5/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-10-KW-PV-INPUT-15000-W-1-BATERIA-LITIO-LIFEPO4-10-KWH.png",
       },
     ],
   },
@@ -652,6 +678,7 @@ const systemsData = [
         annualSavings: 21600,
         produccionMensual: 2592,
         produccionAnual: 31104,
+        img: "https://i.ibb.co/KxhZ8TT5/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-10-KW-PV-INPUT-15000-W-1-BATERIA-LITIO-LIFEPO4-10-KWH.png",
       },
     ],
   },
@@ -2096,7 +2123,8 @@ function mostrarResultados(datos) {
 
 // 🎨 FUNCIÓN PARA MOSTRAR CONTENEDOR DE AHORRO (ON GRID)
 function mostrarContenedorAhorro(datos) {
-  elementos.contenedorAhorro.innerHTML = elementos.contenedorAhorro.style.display = ""
+  elementos.contenedorAhorro.innerHTML = ""
+  elementos.contenedorAhorro.style.display = "block"
 }
 
 // 🔋 FUNCIÓN PARA MOSTRAR CONTENEDOR DE RESPALDO (OFF GRID)
@@ -2109,7 +2137,8 @@ function mostrarContenedorRespaldo(datos) {
 
 // ⚡ FUNCIÓN PARA MOSTRAR CONTENEDOR HÍBRIDO
 function mostrarContenedorHibrido(datos) {
-  elementos.contenedorHibrido.innerHTML = elementos.contenedorHibrido.style.display = ""
+  elementos.contenedorHibrido.innerHTML = ""
+  elementos.contenedorHibrido.style.display = "block"
 }
 
 // 🏷️ FUNCIÓN PARA MOSTRAR SISTEMAS RECOMENDADOS (MODIFICADA)
@@ -2201,6 +2230,21 @@ function mostrarSistemasRecomendados(consumo) {
             <h3 class="sistema-title">${sistema.description}</h3>
           </div>
           <div class="sistema-card-content">
+            ${
+              sistema.img
+                ? `
+              <div class="sistema-image-section">
+                <div class="sistema-image-container" onclick="abrirModalImagen('${sistema.img}', '${sistema.name}')">
+                  <img src="${sistema.img}" alt="${sistema.name}" class="sistema-image">
+                  <div class="image-overlay">
+                    <i class="fas fa-search-plus"></i>
+                    <span>Ver imagen</span>
+                  </div>
+                </div>
+              </div>
+            `
+                : ""
+            }
             <div class="sistema-specs">
               <div class="spec-item">
                 <span class="spec-label">Área requerida:</span>
@@ -2283,15 +2327,45 @@ function mostrarSistemasRecomendados(consumo) {
   elementos.sistemasRecomendados.style.display = "block"
 }
 
-// 🎨 FUNCIÓN PARA FORMATEAR A MONEDA
+//  Agregando funciones para el modal de imagen de productos
+function abrirModalImagen(imagenUrl, nombreSistema) {
+  const modal = document.getElementById("modalImagen")
+  const modalImg = document.getElementById("imagenModal")
+  const caption = document.getElementById("captionModal")
+
+  modal.style.display = "block"
+  modalImg.src = imagenUrl
+  caption.textContent = nombreSistema
+
+  // Prevenir scroll del body cuando el modal está abierto
+  document.body.style.overflow = "hidden"
+}
+
+function cerrarModalImagen() {
+  const modal = document.getElementById("modalImagen")
+  modal.style.display = "none"
+
+  // Restaurar scroll del body
+  document.body.style.overflow = "auto"
+}
+
+// Cerrar modal al hacer clic fuera de la imagen
+window.onclick = (event) => {
+  const modal = document.getElementById("modalImagen")
+  if (event.target === modal) {
+    cerrarModalImagen()
+  }
+}
+
+// Funciones auxiliares para formatear moneda y validar el formulario
 function formatearMoneda(valor) {
   return new Intl.NumberFormat("es-EC", {
     style: "currency",
     currency: "USD",
+    minimumFractionDigits: 2,
   }).format(valor)
 }
 
-// 🔒 FUNCIÓN PARA VALIDAR FORMULARIO
 function validarFormulario() {
   const errores = []
 
@@ -2303,7 +2377,7 @@ function validarFormulario() {
     errores.push("Por favor, ingresa tu número de celular.")
   }
 
-  if (elementos.email.value.trim() && !validarEmail(elementos.email.value.trim())) {
+  if (!validarEmail(elementos.email.value.trim())) {
     errores.push("Por favor, ingresa un email válido.")
   }
 
@@ -2313,34 +2387,29 @@ function validarFormulario() {
 
   if (!elementos.consumoMensual.value.trim()) {
     errores.push("Por favor, ingresa tu consumo mensual de energía.")
-  } else if (isNaN(Number(elementos.consumoMensual.value))) {
-    errores.push("Por favor, ingresa un número válido para tu consumo mensual.")
-  } else if (Number(elementos.consumoMensual.value) <= 0) {
-    errores.push("Por favor, ingresa un consumo mensual mayor a cero.")
   }
 
   if (errores.length > 0) {
-    mostrarErrores(errores)
+    mostrarAlertas(errores)
     return false
   }
 
-  ocultarErrores()
   return true
 }
 
-// ❌ FUNCIÓN PARA MOSTRAR ERRORES
-function mostrarErrores(errores) {
-  elementos.errorList.innerHTML = errores.map((error) => `<li>${error}</li>`).join("")
+function mostrarAlertas(errores) {
+  elementos.errorList.innerHTML = ""
+  errores.forEach((error) => {
+    const li = document.createElement("li")
+    li.textContent = error
+    elementos.errorList.appendChild(li)
+  })
   elementos.errorAlert.style.display = "block"
-  elementos.errorAlert.scrollIntoView({ behavior: "smooth", block: "start" })
+  setTimeout(() => {
+    elementos.errorAlert.style.display = "none"
+  }, 5000)
 }
 
-// 🙈 FUNCIÓN PARA OCULTAR ERRORES
-function ocultarErrores() {
-  elementos.errorAlert.style.display = "none"
-}
-
-// 🚀 FUNCIÓN PARA ENVIAR DATOS A POWER AUTOMATE
 async function enviarDatosAPowerAutomate(datos) {
   try {
     const registro = {
@@ -2354,10 +2423,10 @@ async function enviarDatosAPowerAutomate(datos) {
       consumoAnual: datos.consumoAnualSinSFV,
       costoMensualActual: datos.costoMensualSinSFV,
       costoAnualActual: datos.costoAnualSinSFV,
-      tamanoSistema: datos.sistema.panels * 0.55,
+      tamanoSistema: datos.sistema.name,
       precioInversion: datos.sistema.price,
-      produccionAnual: datos.sistema.produccionAnual || 0,
-      produccionMensual: datos.sistema.produccionMensual || 0,
+      produccionAnual: datos.sistema.produccionAnual,
+      produccionMensual: datos.sistema.produccionMensual,
       cantidadPaneles: datos.sistema.panels,
       areaRequerida: calculateArea(datos.sistema.panels),
       nuevoConsumoMensual: 0,
@@ -2368,7 +2437,7 @@ async function enviarDatosAPowerAutomate(datos) {
       tiempoRetorno: 0,
     }
 
-    console.log("🚀 Enviando datos a Power Automate:", registro)
+    console.log("Enviando datos a Power Automate:", registro)
     const response = await fetch(POWER_AUTOMATE_URL, {
       method: "POST",
       headers: {
@@ -2380,9 +2449,9 @@ async function enviarDatosAPowerAutomate(datos) {
 
     if (response.ok) {
       console.log("✅ Datos enviados correctamente a Power Automate")
-      gtag("event", "lead_captured", {
+      gtag("event", "form_submission", {
         event_category: "Solar Calculator",
-        event_label: "Calculate Button",
+        event_label: "Form Submission",
         value: 1,
       })
     } else {
@@ -2396,12 +2465,12 @@ async function enviarDatosAPowerAutomate(datos) {
   }
 }
 
-// 🖼️ FUNCIÓN PARA MOSTRAR MODAL DE CONSUMO
 function mostrarModalConsumo() {
   elementos.consumoModal.style.display = "block"
+  document.body.style.overflow = "hidden"
 }
 
-// ❌ FUNCIÓN PARA CERRAR MODAL DE CONSUMO
 function cerrarModalConsumo() {
   elementos.consumoModal.style.display = "none"
+  document.body.style.overflow = "auto"
 }
