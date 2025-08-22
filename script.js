@@ -1618,8 +1618,14 @@ function configurarEventListeners() {
 
 // 💾 FUNCIÓN PARA GUARDAR REGISTRO INMEDIATO
 async function guardarRegistroInmediato(nombre) {
-  if (registroGuardado) return
+  if (registroGuardado) {
+    console.log("[v0] ⚠️ Registro ya guardado, saltando...")
+    return
+  }
+
   try {
+    console.log("[v0] 🔄 Iniciando guardado automático para:", nombre)
+
     const registroInmediato = {
       fechaCalculo: new Date().toISOString(),
       nombre: nombre,
@@ -1645,7 +1651,8 @@ async function guardarRegistroInmediato(nombre) {
       tiempoRetorno: 0.0,
     }
 
-    console.log("🔄 Guardando registro automáticamente:", registroInmediato)
+    console.log("[v0] 📝 Registro inmediato preparado:", registroInmediato)
+
     const response = await fetch(POWER_AUTOMATE_URL, {
       method: "POST",
       headers: {
@@ -1655,9 +1662,11 @@ async function guardarRegistroInmediato(nombre) {
       body: JSON.stringify(registroInmediato),
     })
 
+    console.log("[v0] 📡 Respuesta guardado inmediato - Status:", response.status)
+
     if (response.ok) {
       registroGuardado = true
-      console.log("✅ LEAD CAPTURADO - Registro automático guardado:", nombre)
+      console.log("[v0] ✅ LEAD CAPTURADO - Registro automático guardado:", nombre)
       gtag("event", "lead_captured", {
         event_category: "Solar Calculator",
         event_label: "Auto Save Name",
@@ -1665,13 +1674,18 @@ async function guardarRegistroInmediato(nombre) {
       })
     } else {
       const errorText = await response.text()
-      console.error("❌ Error del servidor:", response.status, response.statusText, errorText)
+      console.error(
+        "[v0] ❌ Error del servidor en guardado inmediato:",
+        response.status,
+        response.statusText,
+        errorText,
+      )
       throw new Error(`Error ${response.status}: ${response.statusText} - ${errorText}`)
     }
   } catch (error) {
-    console.error("❌ Error detallado al guardar registro automático:", error)
+    console.error("[v0] ❌ Error detallado al guardar registro automático:", error)
     setTimeout(() => {
-      console.log("🔄 Reintentando guardado automático...")
+      console.log("[v0] 🔄 Reintentando guardado automático...")
       registroGuardado = false
       guardarRegistroInmediato(nombre)
     }, 3000)
@@ -2426,32 +2440,37 @@ function mostrarAlertas(errores) {
 
 async function enviarDatosAPowerAutomate(datos) {
   try {
+    console.log("[v0] 🔍 Iniciando envío a Power Automate...")
+    console.log("[v0] 📊 Datos recibidos:", datos)
+
     const registro = {
       fechaCalculo: new Date().toISOString(),
-      nombre: datos.nombre,
-      tipoCliente: datos.tipoCliente,
-      celular: datos.celular,
-      email: datos.email,
-      ciudad: datos.ciudad,
-      consumoMensual: datos.consumo,
-      consumoAnual: datos.consumoAnualSinSFV,
-      costoMensualActual: datos.costoMensualSinSFV,
-      costoAnualActual: datos.costoAnualSinSFV,
-      tamanoSistema: datos.sistema.name,
-      precioInversion: datos.sistema.price,
-      produccionAnual: datos.sistema.produccionAnual,
-      produccionMensual: datos.sistema.produccionMensual,
-      cantidadPaneles: datos.sistema.panels,
-      areaRequerida: calculateArea(datos.sistema.panels),
-      nuevoConsumoMensual: 0,
-      nuevoCostoMensual: 0,
-      ahorroMensual: 0,
-      ahorroAnual: 0,
-      ahorroAnualPorcentaje: 0,
-      tiempoRetorno: 0,
+      nombre: String(datos.nombre || ""),
+      tipoCliente: String(datos.tipoCliente || ""),
+      celular: String(datos.celular || ""),
+      email: String(datos.email || ""),
+      ciudad: String(datos.ciudad || ""),
+      consumoMensual: Number.parseInt(datos.consumo) || 0,
+      consumoAnual: Number.parseInt(datos.consumoAnualSinSFV) || 0,
+      costoMensualActual: Number.parseFloat(datos.costoMensualSinSFV) || 0,
+      costoAnualActual: Number.parseInt(datos.costoAnualSinSFV) || 0, // Cambiado a integer
+      tamanoSistema: Number.parseFloat(datos.sistema.power) || 0, // Cambiado a number (kW del sistema)
+      precioInversion: Number.parseInt(datos.sistema.price) || 0, // Cambiado a integer
+      produccionAnual: Number.parseInt(datos.sistema.produccionAnual) || 0,
+      produccionMensual: Number.parseInt(datos.sistema.produccionMensual) || 0,
+      cantidadPaneles: Number.parseInt(datos.sistema.panels) || 0,
+      areaRequerida: Number.parseFloat(calculateArea(datos.sistema.panels)) || 0,
+      nuevoConsumoMensual: Number.parseInt(0),
+      nuevoCostoMensual: Number.parseFloat(0),
+      ahorroMensual: Number.parseFloat(0),
+      ahorroAnual: Number.parseFloat(0),
+      ahorroAnualPorcentaje: Number.parseFloat(0),
+      tiempoRetorno: Number.parseFloat(0),
     }
 
-    console.log("Enviando datos a Power Automate:", registro)
+    console.log("[v0] 📝 Registro preparado con tipos corregidos:", registro)
+    console.log("[v0] 🌐 URL de Power Automate:", POWER_AUTOMATE_URL)
+
     const response = await fetch(POWER_AUTOMATE_URL, {
       method: "POST",
       headers: {
@@ -2461,8 +2480,12 @@ async function enviarDatosAPowerAutomate(datos) {
       body: JSON.stringify(registro),
     })
 
+    console.log("[v0] 📡 Respuesta del servidor - Status:", response.status)
+    console.log("[v0] 📡 Respuesta del servidor - StatusText:", response.statusText)
+
     if (response.ok) {
-      console.log("✅ Datos enviados correctamente a Power Automate")
+      console.log("[v0] ✅ Datos enviados correctamente a Power Automate")
+      mostrarNotificacion("✅ Datos guardados correctamente en SharePoint", "success")
       gtag("event", "form_submission", {
         event_category: "Solar Calculator",
         event_label: "Form Submission",
@@ -2470,14 +2493,95 @@ async function enviarDatosAPowerAutomate(datos) {
       })
     } else {
       const errorText = await response.text()
-      console.error("❌ Error del servidor:", response.status, response.statusText, errorText)
+      console.error("[v0] ❌ Error del servidor:", response.status, response.statusText, errorText)
+      mostrarNotificacion(`❌ Error del servidor: ${response.status} - ${response.statusText}`, "error")
       throw new Error(`Error ${response.status}: ${response.statusText} - ${errorText}`)
     }
   } catch (error) {
-    console.error("❌ Error al enviar datos a Power Automate:", error)
-    mostrarNotificacion("❌ Error al enviar datos. Intenta nuevamente.", "error")
+    console.error("[v0] ❌ Error detallado al enviar datos a Power Automate:", error)
+    console.error("[v0] 🔍 Tipo de error:", error.name)
+    console.error("[v0] 🔍 Mensaje de error:", error.message)
+
+    if (error.name === "TypeError" && error.message.includes("fetch")) {
+      mostrarNotificacion("❌ Error de conexión. Verifica tu conexión a internet.", "error")
+    } else if (error.name === "TypeError" && error.message.includes("CORS")) {
+      mostrarNotificacion("❌ Error de CORS. La URL de Power Automate puede necesitar actualización.", "error")
+    } else {
+      mostrarNotificacion("❌ Error al enviar datos. Revisa la consola para más detalles.", "error")
+    }
   }
 }
+
+// This function is already defined above, so it should not be redeclared.
+// async function guardarRegistroInmediato(nombre) {
+//   if (registroGuardado) {
+//     console.log("[v0] ⚠️ Registro ya guardado, saltando...")
+//     return
+//   }
+
+//   try {
+//     console.log("[v0] 🔄 Iniciando guardado automático para:", nombre)
+
+//     const registroInmediato = {
+//       fechaCalculo: new Date().toISOString(),
+//       nombre: nombre,
+//       tipoCliente: elementos.tipoCliente.value || "No especificado",
+//       celular: elementos.celular.value.trim() || "593000000000",
+//       email: elementos.email.value.trim() || "no-email@ejemplo.com",
+//       ciudad: elementos.ciudad.value.trim() || "No especificado",
+//       consumoMensual: Number.parseInt(elementos.consumoMensual.value) || 0,
+//       consumoAnual: 0,
+//       costoMensualActual: 0.0,
+//       costoAnualActual: 0,
+//       tamanoSistema: 0,
+//       precioInversion: 0,
+//       produccionAnual: 0,
+//       produccionMensual: 0,
+//       cantidadPaneles: 0,
+//       areaRequerida: 0.0,
+//       nuevoConsumoMensual: 0,
+//       nuevoCostoMensual: 0.0,
+//       ahorroMensual: 0.0,
+//       ahorroAnual: 0.0,
+//       ahorroAnualPorcentaje: 0.0,
+//       tiempoRetorno: 0.0,
+//     }
+
+//     console.log("[v0] 📝 Registro inmediato preparado:", registroInmediato)
+
+//     const response = await fetch(POWER_AUTOMATE_URL, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Accept: "application/json",
+//       },
+//       body: JSON.stringify(registroInmediato),
+//     })
+
+//     console.log("[v0] 📡 Respuesta guardado inmediato - Status:", response.status)
+
+//     if (response.ok) {
+//       registroGuardado = true
+//       console.log("[v0] ✅ LEAD CAPTURADO - Registro automático guardado:", nombre)
+//       gtag("event", "lead_captured", {
+//         event_category: "Solar Calculator",
+//         event_label: "Auto Save Name",
+//         value: 1,
+//       })
+//     } else {
+//       const errorText = await response.text()
+//       console.error("[v0] ❌ Error del servidor en guardado inmediato:", response.status, response.statusText, errorText)
+//       throw new Error(`Error ${response.status}: ${response.statusText} - ${errorText}`)
+//     }
+//   } catch (error) {
+//     console.error("[v0] ❌ Error detallado al guardar registro automático:", error)
+//     setTimeout(() => {
+//       console.log("[v0] 🔄 Reintentando guardado automático...")
+//       registroGuardado = false
+//       guardarRegistroInmediato(nombre)
+//     }, 3000)
+//   }
+// }
 
 function mostrarModalConsumo() {
   elementos.consumoModal.style.display = "block"
