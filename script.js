@@ -25,7 +25,7 @@ const systemsData = [
         name: "Power Station 1000W",
         description: "Power Station 1000W",
         roi: null,
-        type: "POWER STATION",
+        type: "Sistema de Respaldo",
         price: 770.75,
         priceWithIVA: 886.36,
         panels: 0,
@@ -45,7 +45,7 @@ const systemsData = [
         name: "Power Station 1000W",
         description: "Power Station 1000W",
         roi: null,
-        type: "POWER STATION",
+        type: "Sistema de Respaldo",
         price: 770.75,
         priceWithIVA: 886.36,
         panels: 0,
@@ -64,7 +64,7 @@ const systemsData = [
         name: "Power Station 2400W",
         description: "Power Station 2400W",
         roi: null,
-        type: "POWER STATION",
+        type: "Sistema de Respaldo",
         price: 1250.0,
         priceWithIVA: 1437.5,
         panels: 0,
@@ -904,21 +904,93 @@ const BACKUP_SYSTEMS_DATA = [
   },
 ]
 
-function getRecommendedBackupSystems(totalPowerKW) {
-  console.log("[v0] Getting recommended systems for power:", totalPowerKW, "kW")
+// 🔧 FUNCIONES PARA CALCULADORA DE RESPALDO
+const fW = (n) => Math.round(n).toLocaleString("es-EC")
+const fKWh = (n) => n.toLocaleString("es-EC", { maximumFractionDigits: 2 })
 
-  // Encontrar el rango correspondiente
-  const matchingRange = BACKUP_SYSTEMS_DATA.find(
-    (range) => totalPowerKW >= range.range[0] && totalPowerKW <= range.range[1],
-  )
+const BATT_STEPS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 20, 25, 30, 40, 50]
+const BACKUP_KITS = [
+  {
+    name: "Power Station 1000W",
+    description: "Power Station 1000W",
+    type: "Sistema de Respaldo",
+    inv_kW: 1,
+    batt_kWh: 1,
+    price: 770.75,
+    priceWithIVA: 886.36,
+    min_kW: 0,
+    max_kW: 1,
+  },
+  {
+    name: "BLUESUN 3KW",
+    description: "SISTEMA OFF GRID - INVERSOR SPLIT PHASE 3KW (PV INPUT 2880W) + 1 BATERIA LITIO LIFEPO4 LITIO 5.12KWH",
+    type: "OFF GRID",
+    inv_kW: 3,
+    batt_kWh: 5,
+    price: 2150.0,
+    priceWithIVA: null,
+    min_kW: 1.01,
+    max_kW: 3,
+  },
+  {
+    name: "BLUESUN 5KW",
+    description: "SISTEMA OFF GRID - INVERSOR SINGLE PHASE 5KW PV (INPUT 5000W) + 1 BATERIA LITIO LIFEPO4 5KWH",
+    type: "OFF GRID",
+    inv_kW: 5,
+    batt_kWh: 5,
+    price: 2850.0,
+    priceWithIVA: null,
+    min_kW: 3.01,
+    max_kW: 5,
+  },
+  {
+    name: "ALL IN ONE 6KW + 10KWH",
+    description: "SISTEMA ALL IN ONE - INVERSOR SPLIT PHASE 6KW (PV INPUT 3000W) C/ BATERIA LITIO LIFEPO4 10KWH",
+    type: "OFF GRID",
+    inv_kW: 6,
+    batt_kWh: 10,
+    price: 3850.0,
+    priceWithIVA: null,
+    min_kW: 5.01,
+    max_kW: 6,
+  },
+  {
+    name: "HIBRIDO 10KW + 10KWH",
+    description: "SISTEMA HIBRIDO - INVERSOR SPLIT PHASE 10KW (PV INPUT 15000W) + 1 BATERIA LITIO LIFEPO4 10KWH",
+    type: "Sistema de Ahorro + Respaldo",
+    inv_kW: 10,
+    batt_kWh: 10,
+    price: 5850.0,
+    priceWithIVA: null,
+    min_kW: 6.01,
+    max_kW: 11,
+  },
+  {
+    name: "HIBRIDO 11.4KW + 20KWH",
+    description: "SISTEMA HIBRIDO - INVERSOR SPLIT PHASE 11.4KW (PV INPUT 17000W) + 2 BATERIAS LITIO LIFEPO4 11KWH",
+    type: "Sistema de Ahorro + Respaldo",
+    inv_kW: 11.4,
+    batt_kWh: 20,
+    price: 7850.0,
+    priceWithIVA: null,
+    min_kW: 11.01,
+    max_kW: 15,
+  },
+  {
+    name: "HIBRIDO 15KW + 15KWH",
+    description: "SISTEMA HIBRIDO - INVERSOR SPLIT PHASE 15KW (PV INPUT 22500W) + 1 BATERIA LITIO LIFEPO4 15KWH",
+    type: "Sistema de Ahorro + Respaldo",
+    inv_kW: 15,
+    batt_kWh: 15,
+    price: 6850.0,
+    priceWithIVA: null,
+    min_kW: 15.01,
+    max_kW: 9999,
+  },
+]
 
-  if (matchingRange) {
-    console.log("[v0] Found matching range:", matchingRange.range, "systems:", matchingRange.systems.length)
-    return matchingRange.systems.slice(0, 3) // Máximo 3 sistemas
-  } else {
-    console.log("[v0] No matching range found, returning empty array")
-    return []
-  }
+function getRecommendedBackupSystems(powerKW) {
+  return BACKUP_SYSTEMS_DATA.find((range) => powerKW >= range.range[0] && powerKW <= range.range[1])?.systems || []
 }
 
 function getBackupBadgeClass(tipo) {
@@ -935,85 +1007,13 @@ function getBackupBadgeClass(tipo) {
 function getBackupSystemIcon(tipo) {
   switch (tipo) {
     case "OFF GRID":
-      return '<i class="fas fa-shield-alt"></i>'
+      return '<i class="fas fa-bolt"></i>'
     case "Sistema de Ahorro + Respaldo":
-      return '<i class="fas fa-star"></i>'
+      return '<i class="fas fa-sun"></i>'
     default:
-      return '<i class="fas fa-battery-full"></i>'
+      return '<i class="fas fa-tools"></i>'
   }
 }
-
-const BACKUP_KITS = [
-  {
-    name: "SISTEMA OFF GRID - INVERSOR 110VAC 1KW + 2 BATERIA LITIO LIFEPO4 1.33KWH",
-    inv_kW: 1,
-    min_kW: 0.01,
-    max_kW: 1,
-    batt_kWh: 2,
-  },
-  {
-    name: "SISTEMA OFF GRID - INVERSOR SPLIT PHASE 3KW (PV INPUT 2880W) + 1 BATERIA LITIO LIFEPO4 LITIO 5.12KWH",
-    inv_kW: 3,
-    min_kW: 1.01,
-    max_kW: 3,
-    batt_kWh: 5,
-  },
-  {
-    name: "SISTEMA OFF GRID - INVERSOR SINGLE PHASE 5KW PV (INPUT 5000W) + 1 BATERIA LITIO LIFEPO4 5KWH",
-    inv_kW: 5,
-    min_kW: 3.01,
-    max_kW: 5,
-    batt_kWh: 5,
-  },
-  {
-    name: "SISTEMA OFF GRID - INVERSOR SPLIT PHASE 5KW (PV INPUT 2880W) + 1 BATERIA LITIO LIFEPO4 LITIO 10.85KWH",
-    inv_kW: 5,
-    min_kW: 3.01,
-    max_kW: 5,
-    batt_kWh: 10,
-  },
-  {
-    name: "SISTEMA ALL IN ONE - INVERSOR SPLIT PHASE 6KW (PV INPUT 3000W) C/ BATERIA LITIO LIFEPO4 10KWH",
-    inv_kW: 6,
-    min_kW: 5.01,
-    max_kW: 6,
-    batt_kWh: 10,
-  },
-  {
-    name: "SISTEMA ALL IN ONE - INVERSOR SPLIT PHASE 6KW (PV INPUT 3000W) C/ BATERIA LITIO LIFEPO4 15KWH",
-    inv_kW: 6,
-    min_kW: 5.01,
-    max_kW: 6,
-    batt_kWh: 15,
-  },
-  {
-    name: "SISTEMA HIBRIDO - INVERSOR SPLIT PHASE 11.4KW (PV INPUT 17000W) + 2 BATERIAS LITIO LIFEPO4 11KWH",
-    inv_kW: 11,
-    min_kW: 11.01,
-    max_kW: 14.3,
-    batt_kWh: 20,
-  },
-  {
-    name: "SISTEMA HIBRIDO - INVERSOR SPLIT PHASE 10KW (PV INPUT 15000W) + 1 BATERIA LITIO LIFEPO4 10KWH",
-    inv_kW: 10,
-    min_kW: 6.01,
-    max_kW: 11,
-    batt_kWh: 10,
-  },
-  {
-    name: "SISTEMA HIBRIDO - INVERSOR SPLIT PHASE 15KW (PV INPUT 22500W) + 1 BATERIA LITIO LIFEPO4 15KWH",
-    inv_kW: 15,
-    min_kW: 14.4,
-    max_kW: 16.5,
-    batt_kWh: 15,
-  },
-].sort((a, b) => a.inv_kW - b.inv_kW)
-
-const BATT_STEPS = [2, 5, 10, 15, 20]
-
-// 🔧 FUNCIONES PARA CALCULADORA DE RESPALDO
-const fW = (n) => Math.round(n).toLocaleString("es-EC")
-const fKWh = (n) => n.toLocaleString("es-EC", { maximumFractionDigits: 2 })
 
 function ceilStep(kwh) {
   for (const s of BATT_STEPS) {
@@ -1713,7 +1713,7 @@ function validarEmail(email) {
 // 🆕 NUEVA FUNCIÓN PARA MOSTRAR AHORROS O MENSAJE DE EMERGENCIA CON CÁLCULOS FTV
 function getSavingsOrEmergencyMessage(sistema, consumo) {
   // Si el consumo es menor a 200 kWh y es un Power Station, mostrar mensaje especial
-  if (consumo < 200 && sistema.type === "POWER STATION") {
+  if (consumo < 200 && sistema.type === "Sistema de Respaldo") {
     return `
       <div class="emergency-message">
         <div class="emergency-icon">
@@ -1737,7 +1737,7 @@ function getSavingsOrEmergencyMessage(sistema, consumo) {
   }
 
   // Para TODOS los sistemas OFF GRID, mostrar mensaje especial sin ahorros
-  if (sistema.type.includes("Sistema de Respaldo")) {
+  if (sistema.type === "Sistema de Respaldo") {
     return `
       <div class="emergency-message off-grid">
         <div class="emergency-icon">
@@ -1985,7 +1985,7 @@ function generarPDFSistema(sistema, datosCliente) {
     doc.setTextColor(...textColor)
 
     // Verificar si es sistema de emergencia o calcular ahorros FTV
-    if (sistema.type === "POWER STATION" || sistema.type === "Sistema de Respaldo") {
+    if (sistema.type === "Sistema de Respaldo") {
       doc.text("✓ Sistema de respaldo energético", 20, yPos)
       doc.text("✓ Energía limpia y renovable", 20, yPos + 6)
       doc.text("✓ Independencia energética", 20, yPos + 12)
@@ -2176,36 +2176,29 @@ function mostrarSistemasRecomendados(consumo) {
 
   function getBadgeClass(tipo) {
     switch (tipo) {
-      case "ON GRID":
+      case "Sistema de ahorro energetico":
         return "badge-on-grid"
-      case "OFF GRID":
+      case "Sistema de Respaldo":
         return "badge-off-grid"
       case "Sistema de Ahorro + Respaldo":
         return "badge-hibrido"
-      case "Sistema de Respaldo":
-        return "badge-power-station"
       default:
         return "badge-on-grid"
     }
   }
 
+  // Reemplaza la función `calcularConsumoYAhorro` con la correcta:
   function calcularConsumoYAhorro(sistema, consumoActual) {
-    const generacionMensual = sistema.produccionMensual || 0
-
-    // El consumo nuevo es el consumo actual menos la generación (mínimo 0)
-    const consumoNuevo = Math.max(0, consumoActual - generacionMensual)
-    const ahorro = consumoActual - consumoNuevo
-
-    const precioPorKWh = 3.5 // Precio promedio por kWh en México
-    const costoActual = consumoActual * precioPorKWh
-    const costoNuevo = consumoNuevo * precioPorKWh
+    // Usar la función de cálculo FTV correcta
+    const datosFTV = calcularDatosFTV(sistema, consumoActual)
 
     return {
       consumoActual: consumoActual,
-      consumoNuevo: consumoNuevo,
-      ahorro: ahorro,
-      costoActual: costoActual,
-      costoNuevo: costoNuevo,
+      consumoNuevo: Math.round(datosFTV.nuevoConsumoMensual),
+      ahorro: Math.round(consumoActual - datosFTV.nuevoConsumoMensual),
+      costoActual: datosFTV.costoMensualSinSFV,
+      costoNuevo: datosFTV.nuevoCostoMensual,
+      ahorroEconomico: datosFTV.ahorroMensualReal,
     }
   }
 
@@ -2282,18 +2275,18 @@ function mostrarSistemasRecomendados(consumo) {
             ${
               sistema.type === "Sistema de ahorro energetico" || sistema.type === "Sistema de Ahorro + Respaldo"
                 ? `
-              <div class="operacion-matematica" style="margin: 15px 0; padding: 10px; background-color: #f8f9fa; border-radius: 5px;">
-                <div class="operacion-texto" style="margin-bottom: 5px;"><strong>Consumo actual:</strong> ${datos.consumoActual.toFixed(0)} kWh/mes</div>
-                <div class="operacion-texto" style="margin-bottom: 5px;"><strong>Consumo nuevo:</strong> ${datos.consumoNuevo.toFixed(0)} kWh/mes</div>
-                <hr style="margin: 8px 0; border: 1px solid #ddd;">
-                <div class="operacion-texto" style="margin-bottom: 10px; color: #28a745;"><strong>Ahorro:</strong> ${datos.ahorro.toFixed(0)} kWh/mes</div>
-                
-                <div class="operacion-texto" style="margin-bottom: 5px;"><strong>Costo actual:</strong> $${datos.costoActual.toFixed(0)} /mes</div>
-                <div class="operacion-texto" style="margin-bottom: 5px;"><strong>Costo nuevo:</strong> $${datos.costoNuevo.toFixed(0)} /mes</div>
-                <hr style="margin: 8px 0; border: 1px solid #ddd;">
-                <div class="operacion-texto" style="color: #28a745;"><strong>Ahorro económico:</strong> $${(datos.costoActual - datos.costoNuevo).toFixed(0)} /mes</div>
-              </div>
-            `
+                <div class="operacion-matematica" style="margin: 15px 0; padding: 10px; background-color: #f8f9fa; border-radius: 5px;">
+                  <div class="operacion-texto" style="margin-bottom: 5px;"><strong>Consumo actual:</strong> ${datos.consumoActual} kWh/mes</div>
+                  <div class="operacion-texto" style="margin-bottom: 5px;"><strong>Consumo nuevo:</strong> ${datos.consumoNuevo} kWh/mes</div>
+                  <hr style="margin: 8px 0; border: 1px solid #ddd;">
+                  <div class="operacion-texto" style="margin-bottom: 10px; color: #28a745;"><strong>Ahorro:</strong> ${datos.ahorro} kWh/mes</div>
+                  
+                  <div class="operacion-texto" style="margin-bottom: 5px;"><strong>Costo actual:</strong> ${formatearMoneda(datos.costoActual)}</div>
+                  <div class="operacion-texto" style="margin-bottom: 5px;"><strong>Costo nuevo:</strong> ${formatearMoneda(datos.costoNuevo)}</div>
+                  <hr style="margin: 8px 0; border: 1px solid #ddd;">
+                  <div class="operacion-texto" style="color: #28a745;"><strong>Ahorro económico:</strong> ${formatearMoneda(datos.ahorroEconomico)} /mes</div>
+                </div>
+              `
                 : ""
             }
             ${
@@ -2310,26 +2303,6 @@ function mostrarSistemasRecomendados(consumo) {
                     <p>Batería de litio de larga duración</p>
                     <p>Reduce dependencia de la red eléctrica</p>
                     <br><br><br><br>
-                  
-                </div>
-              </div>
-            `
-                : ""
-            }
-            ${
-              sistema.type === "POWER STATION"
-                ? `
-              <div class="emergency-message off-grid">
-                <div class="emergency-icon">
-                  <i class="fas fa-battery-full"></i>
-                </div>
-                <div class="emergency-content">
-                  <h4>Sistema de Respaldo Inteligente</h4>
-                    <p>Respaldo automático durante cortes de luz</p>
-                    <p>Energía solar gratuita durante el día</p>
-                    <p>Batería de litio de larga duración</p>
-                    <p>Reduce dependencia de la red eléctrica</p>
-                    <br><br><br>
                   
                 </div>
               </div>
