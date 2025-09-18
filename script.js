@@ -1,19 +1,18 @@
-// Tabla tarifaria exacta según especificaciones
 const TARIFAS_EXACTAS = [
-  { desde: 50, hasta: 99, tarifa: 0.091, costoBase: 0 },
-  { desde: 100, hasta: 149, tarifa: 0.093, costoBase: 4.55 },
-  { desde: 150, hasta: 199, tarifa: 0.095, costoBase: 9.2 },
-  { desde: 200, hasta: 249, tarifa: 0.097, costoBase: 13.95 },
-  { desde: 250, hasta: 299, tarifa: 0.099, costoBase: 18.8 },
-  { desde: 300, hasta: 349, tarifa: 0.101, costoBase: 23.75 },
-  { desde: 350, hasta: 404, tarifa: 0.103, costoBase: 28.8 },
-  { desde: 405, hasta: 699, tarifa: 0.105, costoBase: 39.73 },
-  { desde: 700, hasta: 999, tarifa: 0.1285, costoBase: 77.63 },
-  { desde: 1000, hasta: 1499, tarifa: 0.145, costoBase: 121.13 },
-  { desde: 1500, hasta: 1999, tarifa: 0.1709, costoBase: 206.58 },
-  { desde: 2000, hasta: 2499, tarifa: 0.2752, costoBase: 344.18 },
-  { desde: 2500, hasta: 3500, tarifa: 0.436, costoBase: 562.18 },
-  { desde: 3501, hasta: Number.POSITIVE_INFINITY, tarifa: 0.6812, costoBase: 1244.06 },
+  { desde: 0, hasta: 50, tarifa: 0.0915, costoBase: 0 },
+  { desde: 51, hasta: 100, tarifa: 0.093, costoBase: 4.575 },
+  { desde: 101, hasta: 150, tarifa: 0.095, costoBase: 9.225 },
+  { desde: 151, hasta: 200, tarifa: 0.097, costoBase: 14.0 },
+  { desde: 201, hasta: 250, tarifa: 0.099, costoBase: 18.85 },
+  { desde: 251, hasta: 300, tarifa: 0.101, costoBase: 23.8 },
+  { desde: 301, hasta: 350, tarifa: 0.103, costoBase: 28.85 },
+  { desde: 351, hasta: 500, tarifa: 0.105, costoBase: 34.0 },
+  { desde: 501, hasta: 700, tarifa: 0.1285, costoBase: 49.75 },
+  { desde: 701, hasta: 1000, tarifa: 0.145, costoBase: 75.45 },
+  { desde: 1001, hasta: 1500, tarifa: 0.1709, costoBase: 118.95 },
+  { desde: 1501, hasta: 2500, tarifa: 0.2752, costoBase: 204.4 },
+  { desde: 2501, hasta: 3500, tarifa: 0.436, costoBase: 479.52 },
+  { desde: 3501, hasta: Number.POSITIVE_INFINITY, tarifa: 0.6812, costoBase: 915.52 },
 ]
 
 // 🏷️ DATOS DE SISTEMAS EXACTOS COMO EN EL TSX
@@ -102,7 +101,7 @@ const systemsData = [
         name: "BLUESUN 3KW",
         description: "INVERSOR SPLIT PHASE 3KW + BATERIA LITIO LIFEPO4 5.12KWH",
         roi: null,
-        type: "Sistema de Ahorro + Respaldo",
+        type: "Sistema de Respaldo",
         price: 2899.0,
         priceWithIVA: null,
         panels: 6,
@@ -116,7 +115,7 @@ const systemsData = [
         name: "BLUESUN 5KW",
         description: "INVERSOR SPLIT PHASE 5KW + BATERIA LITIO LIFEPO4 10.24KWH",
         roi: null,
-        type: "Sistema de Ahorro + Respaldo",
+        type: "Sistema de Respaldo",
         price: 4299.0,
         priceWithIVA: null,
         panels: 10,
@@ -275,16 +274,16 @@ const systemsData = [
       {
         name: "ON GRID 3KW + 6 PANELES",
         description: "INVERSOR SINGLE PHASE 3KW + SISTEMA 6 PANELES SOLARES",
-        roi: null,
+        roi: 5.5,
         type: "Sistema de ahorro energetico",
         price: 3050.0,
         priceWithIVA: null,
         panels: 6,
         monthlySavings: 320,
         annualSavings: 3840,
-        produccionMensual: 324, // 3.9 kWp * 1080 kWh/kWp/año / 12 meses = 324 kWh/mes
-        produccionAnual: 3888, // 3.6 kWp * 1080 kWh/kWp/año = 3888 kWh/año
-        img: "https://i.ibb.co/RTXG2Nvb/SISTEMA-OFF-GRID-INVERSOR-SPLIT-PHASE-3-KW-PV-INPUT-2880-W-1-BATERIA-LIFEPO4-LITIO-5-12-KWH.png",
+        produccionMensual: 344.5, // Producción mensual corregida según Excel
+        produccionAnual: 4134, // 344.5 * 12 = 4134 kWh/año
+        img: "https://i.ibb.co/Hp1Km2yv/INVERSOR-ONGRID-3-KW.png",
       },
       {
         name: "BLUESUN 5KW + 4 PANELES",
@@ -323,7 +322,7 @@ const systemsData = [
       {
         name: "ON GRID 5KW + 10 PANELES",
         description: "INVERSOR SINGLE PHASE 5KW + SISTEMA 10 PANELES SOLARES",
-        roi: null,
+        roi: 4.5,
         type: "Sistema de ahorro energetico",
         price: 4653.0,
         priceWithIVA: null,
@@ -332,7 +331,7 @@ const systemsData = [
         annualSavings: 5400,
         produccionMensual: 540, // 6.5 kWp * 1080 kWh/kWp/año / 12 meses = 540 kWh/mes
         produccionAnual: 6480, // 6.0 kWp * 1080 kWh/kWp/año = 6480 kWh/año
-        img: "https://i.ibb.co/7xQF7j9k/SISTEMA-OFF-GRID-INVERSOR-SINGLE-PHASE-5-KW-PV-INPUT-5000-W-1-BATERIA-LITIO-LIFEPO4-5-KWH.png",
+        img: "https://i.ibb.co/gFQXWCrT/INVERSOR-ONGRID-5-KW.png",
       },
       {
         name: "BLUESUN 5KW + 4 PANELES",
@@ -371,30 +370,30 @@ const systemsData = [
       {
         name: "ON GRID 5KW + 10 PANELES",
         description: "INVERSOR SINGLE PHASE 5KW + SISTEMA 10 PANELES SOLARES",
-        roi: null,
+        roi: 4,
         type: "Sistema de ahorro energetico",
         price: 4653.0,
         priceWithIVA: null,
         panels: 10,
         monthlySavings: 450,
         annualSavings: 5400,
-        produccionMensual: 540,
-        produccionAnual: 6480,
-        img: "https://i.ibb.co/7xQF7j9k/SISTEMA-OFF-GRID-INVERSOR-SINGLE-PHASE-5-KW-PV-INPUT-5000-W-1-BATERIA-LITIO-LIFEPO4-5-KWH.png",
+        produccionMensual: 495,
+        produccionAnual: 5940,
+        img: "https://i.ibb.co/gFQXWCrT/INVERSOR-ONGRID-5-KW.png",
       },
       {
         name: "SOSEN 10 KW+ 20 PANELES",
         description:
           "INVERSOR SPLIT PHASE 10KW (PV INPUT 15000W) + 1 BATERIA LITIO LIFEPO4 10KWH + SISTEMA DE 20 PANELES",
-        roi: null,
+        roi: 5.8,
         type: "Sistema de Ahorro + Respaldo",
         price: 11769.0,
         priceWithIVA: null,
         panels: 20,
         monthlySavings: 520,
         annualSavings: 6240,
-        produccionMensual: 540,
-        produccionAnual: 6480,
+        produccionMensual: 990,
+        produccionAnual: 11880,
         img: "https://i.ibb.co/KxhZ8TT5/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-10-KW-PV-INPUT-15000-W-1-BATERIA-LITIO-LIFEPO4-10-KWH.png",
       },
       {
@@ -419,7 +418,7 @@ const systemsData = [
       {
         name: "ON GRID 5KW + 10 PANELES",
         description: "INVERSOR SINGLE PHASE 5KW + SISTEMA 10 PANELES SOLARES",
-        roi: null,
+        roi: 3,
         type: "Sistema de ahorro energetico",
         price: 4653.0,
         priceWithIVA: null,
@@ -428,13 +427,13 @@ const systemsData = [
         annualSavings: 5400,
         produccionMensual: 540,
         produccionAnual: 6480,
-        img: "https://i.ibb.co/7xQF7j9k/SISTEMA-OFF-GRID-INVERSOR-SINGLE-PHASE-5-KW-PV-INPUT-5000-W-1-BATERIA-LITIO-LIFEPO4-5-KWH.png",
+        img: "https://i.ibb.co/gFQXWCrT/INVERSOR-ONGRID-5-KW.png",
       },
       {
         name: "SOSEN 10 KW + 15 PANELES",
         description:
           "INVERSOR SPLIT PHASE 10KW (PV INPUT 15000W) + 1 BATERIA LITIO LIFEPO4 10KWH + SISTEMA DE 15 PANELES SOLARES",
-        roi: null,
+        roi: 5,
         type: "Sistema de Ahorro + Respaldo",
         price: 10524.0,
         priceWithIVA: null,
@@ -449,15 +448,15 @@ const systemsData = [
         name: "SOSEN FOX 11KW + 15 PANELES",
         description:
           "INVERSOR SPLIT PHASE 11.4KW (PV INPUT 17000W) +  2 BATERIAS LITIO LIFEPO4 11KWH + SISTEMA DE 15 PANELES SOLARES",
-        roi: null,
+        roi: 6.5,
         type: "Sistema de Ahorro + Respaldo",
         price: 13824.0,
         priceWithIVA: null,
         panels: 15,
         monthlySavings: 720,
         annualSavings: 8640,
-        produccionMensual: 810,
-        produccionAnual: 9720,
+        produccionMensual: 920, // Mayor producción debido a mayor capacidad del inversor
+        produccionAnual: 11040, // 920 * 12 meses
         img: "https://i.ibb.co/XkZdFr02/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-11-4-KW-PV-INPUT-17000-W-2-BATERIAS-LITIO-LIFEPO4-11-KWH.png",
       },
     ],
@@ -468,45 +467,45 @@ const systemsData = [
       {
         name: "ON GRID 10KW + 20 PANELES",
         description: "INVERSOR SINGLE PHASE 10KW + SISTEMA 20 PANELES SOLARES",
-        roi: null,
+        roi: 3,
         type: "Sistema de ahorro energetico",
         price: 8775.0,
         priceWithIVA: null,
         panels: 20,
         monthlySavings: 850,
         annualSavings: 10200,
-        produccionMensual: 1080, // 12.0 kWp * 1080 kWh/kWp/año / 12 meses = 1080 kWh/mes
+        produccionMensual: 1080, // 12.0 kWp * 90 kWh/kWp/mes = 1080 kWh/mes
         produccionAnual: 12960, // 12.0 kWp * 1080 kWh/kWp/año = 12960 kWh/año
-        img: "https://i.ibb.co/KxhZ8TT5/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-10-KW-PV-INPUT-15000-W-1-BATERIA-LITIO-LIFEPO4-10-KWH.png",
+        img: "https://i.ibb.co/p6zzb4t8/INVERSOR-ONGRID-10-KW.png",
       },
       {
         name: "SOSEN FOX 11KW  + 20 PANELES",
         description:
           "INVERSOR SPLIT PHASE 11.4KW (PV INPUT 17000W) +  2 BATERIAS LITIO LIFEPO4 11KWH + SISTEMA DE 20 PANELES SOLARES",
-        roi: null,
+        roi: 5.2,
         type: "Sistema de Ahorro + Respaldo",
         price: 14949.0,
         priceWithIVA: null,
         panels: 20,
         monthlySavings: 920,
         annualSavings: 11040,
-        produccionMensual: 1080,
-        produccionAnual: 12960,
+        produccionMensual: 1230, // Mayor producción debido a mayor capacidad del inversor
+        produccionAnual: 14760, // 1230 * 12 meses
         img: "https://i.ibb.co/XkZdFr02/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-11-4-KW-PV-INPUT-17000-W-2-BATERIAS-LITIO-LIFEPO4-11-KWH.png",
       },
       {
         name: "SOSEN 15 KW + 20 PANELES",
         description:
           "INVERSOR SPLIT PHASE 15KW (PV INPUT 22500W) + 1 BATERIA LITIO LIFEPO4 15KWH + SISTEMA DE 20 PANELES SOLARES",
-        roi: null,
+        roi: 5,
         type: "Sistema de Ahorro + Respaldo",
         price: 14449.0,
         priceWithIVA: null,
         panels: 20,
         monthlySavings: 920,
         annualSavings: 11040,
-        produccionMensual: 1080,
-        produccionAnual: 12960,
+        produccionMensual: 1350, // Mayor producción debido a mayor capacidad del inversor
+        produccionAnual: 16200, // 1350 * 12 meses
         img: "https://i.ibb.co/fGY2LRwd/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-15-KW-PV-INPUT-22500-W-1-BATERIA-LITIO-LIFEPO4-15-KWH.png",
       },
     ],
@@ -517,7 +516,7 @@ const systemsData = [
       {
         name: "ON GRID 10KW + 20 PANELES",
         description: "INVERSOR SINGLE PHASE 10KW + SISTEMA 20 PANELES SOLARES",
-        roi: null,
+        roi: 2.8,
         type: "Sistema de ahorro energetico",
         price: 8775.0,
         priceWithIVA: null,
@@ -526,36 +525,36 @@ const systemsData = [
         annualSavings: 10200,
         produccionMensual: 1080,
         produccionAnual: 12960,
-        img: "https://i.ibb.co/KxhZ8TT5/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-10-KW-PV-INPUT-15000-W-1-BATERIA-LITIO-LIFEPO4-10-KWH.png",
+        img: "https://i.ibb.co/p6zzb4t8/INVERSOR-ONGRID-10-KW.png",
       },
       {
         name: "SOSEN FOX 11KW  + 20 PANELES",
         description:
           "INVERSOR SPLIT PHASE 11.4KW (PV INPUT 17000W) +  2 BATERIAS LITIO LIFEPO4 11KWH + SISTEMA DE 20 PANELES SOLARES",
-        roi: null,
+        roi: 4.7,
         type: "Sistema de Ahorro + Respaldo",
         price: 14949.0,
         priceWithIVA: null,
         panels: 20,
         monthlySavings: 850,
         annualSavings: 10200,
-        produccionMensual: 1080,
-        produccionAnual: 12960,
-        img: "https://i.ibb.co/XkZdFr02/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-11-4-KW-PV-INPUT-17000-W-2-BATERIAS-LITIO-LIFEPO4-11-KWH.png",
+        produccionMensual: 1230,
+        produccionAnual: 14760,
+        img: "https://i.ibb.co/XkZdFr02/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-11-4-KW-PV-INPUT-17000-W-2-BATERIAS-LITIO-LIFEPO4-11-KWH.XkZdFr02/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-11-4-KW-PV-INPUT-17000-W-2-BATERIAS-LITIO-LIFEPO4-11-KWH.png",
       },
       {
         name: "SOSEN 15 KW + 20 PANELES",
         description:
           "INVERSOR SPLIT PHASE 15KW (PV INPUT 22500W) + 1 BATERIA LITIO LIFEPO4 15KWH + SISTEMA DE 20 PANELES SOLARES",
-        roi: null,
+        roi: 4,
         type: "Sistema de Ahorro + Respaldo",
         price: 14449.0,
         priceWithIVA: null,
         panels: 20,
         monthlySavings: 920,
         annualSavings: 11040,
-        produccionMensual: 1080,
-        produccionAnual: 12960,
+        produccionMensual: 1350,
+        produccionAnual: 16200,
         img: "https://i.ibb.co/fGY2LRwd/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-15-KW-PV-INPUT-22500-W-1-BATERIA-LITIO-LIFEPO4-15-KWH.png",
       },
     ],
@@ -566,7 +565,7 @@ const systemsData = [
       {
         name: "ON GRID 10KW + 20 PANELES",
         description: "INVERSOR SINGLE PHASE 10KW + SISTEMA 20 PANELES SOLARES",
-        roi: null,
+        roi: 2.5,
         type: "Sistema de ahorro energetico",
         price: 8775.0,
         priceWithIVA: null,
@@ -575,36 +574,36 @@ const systemsData = [
         annualSavings: 10200,
         produccionMensual: 1080,
         produccionAnual: 12960,
-        img: "https://i.ibb.co/KxhZ8TT5/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-10-KW-PV-INPUT-15000-W-1-BATERIA-LITIO-LIFEPO4-10-KWH.png",
+        img: "https://i.ibb.co/p6zzb4t8/INVERSOR-ONGRID-10-KW.png",
       },
       {
         name: "SOSEN FOX 11KW  + 20 PANELES",
         description:
           "INVERSOR SPLIT PHASE 11.4KW (PV INPUT 17000W) +  2 BATERIAS LITIO LIFEPO4 11KWH + SISTEMA DE 20 PANELES SOLARES",
-        roi: null,
+        roi: 4,
         type: "Sistema de Ahorro + Respaldo",
         price: 14949.0,
         priceWithIVA: null,
         panels: 20,
         monthlySavings: 850,
         annualSavings: 10200,
-        produccionMensual: 1080,
-        produccionAnual: 12960,
+        produccionMensual: 1230,
+        produccionAnual: 14760,
         img: "https://i.ibb.co/XkZdFr02/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-11-4-KW-PV-INPUT-17000-W-2-BATERIAS-LITIO-LIFEPO4-11-KWH.png",
       },
       {
         name: "SOSEN 15 KW + 20 PANELES",
         description:
           "INVERSOR SPLIT PHASE 15KW (PV INPUT 22500W) + 1 BATERIA LITIO LIFEPO4 15KWH + SISTEMA DE 20 PANELES SOLARES",
-        roi: null,
+        roi: 4,
         type: "Sistema de Ahorro + Respaldo",
         price: 14449.0,
         priceWithIVA: null,
         panels: 20,
         monthlySavings: 920,
         annualSavings: 11040,
-        produccionMensual: 1080,
-        produccionAnual: 12960,
+        produccionMensual: 1350,
+        produccionAnual: 16200,
         img: "https://i.ibb.co/fGY2LRwd/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-15-KW-PV-INPUT-22500-W-1-BATERIA-LITIO-LIFEPO4-15-KWH.png",
       },
     ],
@@ -615,45 +614,45 @@ const systemsData = [
       {
         name: "ON GRID 10KW + 24 PANELES",
         description: "INVERSOR SINGLE PHASE 10KW + SISTEMA 24 PANELES SOLARES",
-        roi: null,
+        roi: 2,
         type: "Sistema de ahorro energetico",
         price: 9435.0,
         priceWithIVA: null,
         panels: 24,
         monthlySavings: 1050,
         annualSavings: 12600,
-        produccionMensual: 1296, // 14.4 kWp * 1080 kWh/kWp/año / 12 meses = 1296 kWh/mes
-        produccionAnual: 15552, // 14.4 kWp * 1080 kWh/kWp/año = 15552 kWh/año
-        img: "https://i.ibb.co/KxhZ8TT5/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-10-KW-PV-INPUT-15000-W-1-BATERIA-LITIO-LIFEPO4-10-KWH.png",
+        produccionMensual: 990, // 2895 - 1905 = 990 kWh/mes según Excel
+        produccionAnual: 11880, // 990 * 12 = 11880 kWh/año
+        img: "https://i.ibb.co/p6zzb4t8/INVERSOR-ONGRID-10-KW.png",
       },
       {
         name: "SOSEN FOX 11KW  + 30 PANELES",
         description:
           "INVERSOR SPLIT PHASE 11.4KW (PV INPUT 17000W) +  2 BATERIAS LITIO LIFEPO4 11KWH + SISTEMA DE 30 PANELES SOLARES",
-        roi: null,
+        roi: 2.7,
         type: "Sistema de Ahorro + Respaldo",
         price: 17199.0,
         priceWithIVA: null,
         panels: 30,
         monthlySavings: 1200,
         annualSavings: 14400,
-        produccionMensual: 1620, // 18.0 kWp * 1080 kWh/kWp/año / 12 meses = 1620 kWh/mes
-        produccionAnual: 19440, // 18.0 kWp * 1080 kWh/kWp/año = 19440 kWh/año
+        produccionMensual: 1129, // 2895 - 1766 = 1129 kWh/mes según Excel
+        produccionAnual: 13548, // 1129 * 12 = 13548 kWh/año
         img: "https://i.ibb.co/XkZdFr02/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-11-4-KW-PV-INPUT-17000-W-2-BATERIAS-LITIO-LIFEPO4-11-KWH.png",
       },
       {
         name: "SOSEN 15 KW + 30 PANELES",
         description:
           "INVERSOR SPLIT PHASE 15KW (PV INPUT 22500W) + 1 BATERIA LITIO LIFEPO4 15KWH + SISTEMA DE 30 PANELES SOLARES",
-        roi: null,
+        roi: 2.6,
         type: "Sistema de Ahorro + Respaldo",
         price: 16699.0,
         priceWithIVA: null,
         panels: 30,
         monthlySavings: 1200,
         annualSavings: 14400,
-        produccionMensual: 1620,
-        produccionAnual: 19440,
+        produccionMensual: 1485, // 2895 - 1410 = 1485 kWh/mes según Excel
+        produccionAnual: 17820, // 1485 * 12 = 17820 kWh/año
         img: "https://i.ibb.co/fGY2LRwd/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-15-KW-PV-INPUT-22500-W-1-BATERIA-LITIO-LIFEPO4-15-KWH.png",
       },
     ],
@@ -664,7 +663,7 @@ const systemsData = [
       {
         name: "2 SISTEMAS (ON GRID 10KW + 24 PANELES)",
         description: "2 INVERSORES SINGLE PHASE 10KW + SISTEMA 48 PANELES SOLARES",
-        roi: null,
+        roi: 2,
         type: "Sistema de ahorro energetico",
         price: 18870.0,
         priceWithIVA: null,
@@ -673,7 +672,7 @@ const systemsData = [
         annualSavings: 21600,
         produccionMensual: 2592, // 28.8 kWp * 1080 kWh/kWp/año / 12 meses = 2592 kWh/mes
         produccionAnual: 31104, // 28.8 kWp * 1080 kWh/kWp/año = 31104 kWh/año
-        img: "https://i.ibb.co/KxhZ8TT5/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-10-KW-PV-INPUT-15000-W-1-BATERIA-LITIO-LIFEPO4-10-KWH.png",
+        img: "https://i.ibb.co/p6zzb4t8/INVERSOR-ONGRID-10-KW.png",
       },
     ],
   },
@@ -683,7 +682,7 @@ const systemsData = [
       {
         name: "2 SISTEMAS (ON GRID 10KW + 24 PANELES)",
         description: "2 INVERSORES SINGLE PHASE 10KW + SISTEMA 48 PANELES SOLARES",
-        roi: null,
+        roi: 1.6,
         type: "Sistema de ahorro energetico",
         price: 18870.0,
         priceWithIVA: null,
@@ -692,11 +691,27 @@ const systemsData = [
         annualSavings: 21600,
         produccionMensual: 2592,
         produccionAnual: 31104,
-        img: "https://i.ibb.co/KxhZ8TT5/SISTEMA-HIBRIDO-INVERSOR-SPLIT-PHASE-10-KW-PV-INPUT-15000-W-1-BATERIA-LITIO-LIFEPO4-10-KWH.png",
+        img: "https://i.ibb.co/p6zzb4t8/INVERSOR-ONGRID-10-KW.png",
       },
     ],
   },
 ]
+
+function calcularROI(sistema, ahorroAnualReal) {
+  // Solo mostrar ROI para sistemas que generan ahorro económico
+  if (sistema.type === "Sistema de Respaldo" || ahorroAnualReal <= 0) {
+    return null // No aplica ROI para sistemas de respaldo puro
+  }
+
+  // Usar el ROI estático definido en el sistema
+  if (sistema.roi !== null && sistema.roi !== undefined) {
+    return sistema.roi // Usar el valor estático del sistema
+  }
+
+  // Fallback: calcular ROI si no está definido estáticamente
+  const roi = sistema.price / ahorroAnualReal
+  return Math.round(roi * 10) / 10 // Redondear a 1 decimal
+}
 
 // 🔧 DATOS PARA CALCULADORA DE RESPALDO
 const BACKUP_PRODUCTS = [
@@ -1375,6 +1390,18 @@ function calculateArea(panels) {
   return panels * 2.62 * 1.3
 }
 
+function calcularProduccionMensual(potenciaKW) {
+  // Fórmula oficial: Producción anual = TAMAÑO × 3.3 × 30 × 12
+  // Producción mensual = Producción anual ÷ 12 = TAMAÑO × 3.3 × 30 = TAMAÑO × 99
+  return potenciaKW * 99
+}
+
+function extraerPotenciaDelSistema(descripcion) {
+  // Extraer potencia de descripciones como "INVERSOR SINGLE PHASE 3KW", "INVERSOR SPLIT PHASE 10KW", etc.
+  const match = descripcion.match(/(\d+(?:\.\d+)?)\s*KW/i)
+  return match ? Number.parseFloat(match[1]) : 0
+}
+
 // 🆕 FUNCIÓN PARA CALCULAR COSTO PROGRESIVO (IGUAL AL SCRIPT ADJUNTO)
 function calcularCostoProgresivo(consumo) {
   if (consumo <= 0) return 0
@@ -1425,35 +1452,58 @@ function calcularCostoProgresivo(consumo) {
   return 0
 }
 
-// 🆕 FUNCIÓN PARA CALCULAR DATOS FTV DE UN SISTEMA
-function calcularDatosFTV(sistema, consumoOriginal) {
-  // Costo mensual sin sistema FTV
-  const costoMensualSinSFV = calcularCostoProgresivo(consumoOriginal)
+function calcularDatosFTV(sistema, consumoActual) {
+  // Calcular producción automáticamente basándose en la potencia del sistema
+  const potencia = extraerPotenciaDelSistema(sistema.description)
+  const produccionMensualCalculada = calcularProduccionMensual(potencia)
 
-  // Nuevo consumo con sistema FTV (solo para sistemas ON GRID y HIBRIDO)
-  let nuevoConsumoMensual = consumoOriginal
-  let nuevoCostoMensual = costoMensualSinSFV
-  let ahorroMensualReal = 0
-  let ahorroAnualReal = 0
+  // Para sistemas de respaldo, la producción es 0
+  const produccionFinal = sistema.type === "Sistema de Respaldo" ? 0 : produccionMensualCalculada
 
-  if (sistema.type === "Sistema de ahorro energetico" || sistema.type === "Sistema de Ahorro + Respaldo") {
-    // Calcular nuevo consumo restando la producción del sistema
-    nuevoConsumoMensual = Math.max(0, consumoOriginal - sistema.produccionMensual)
-    // Calcular nuevo costo mensual con el nuevo consumo
-    nuevoCostoMensual = calcularCostoProgresivo(nuevoConsumoMensual)
-    // Calcular ahorro real
-    ahorroMensualReal = costoMensualSinSFV - nuevoCostoMensual
-    ahorroAnualReal = ahorroMensualReal * 12
-  }
+  const nuevoConsumo = Math.max(0, consumoActual - produccionFinal)
+  const nuevoCosto = calcularCostoProgresivo(nuevoConsumo)
+  const costoActual = calcularCostoProgresivo(consumoActual)
+  const ahorroMensual = costoActual - nuevoCosto
+  const ahorroAnual = ahorroMensual * 12
 
   return {
-    costoMensualSinSFV,
-    nuevoConsumoMensual,
-    nuevoCostoMensual,
-    ahorroMensualReal,
-    ahorroAnualReal,
+    nuevoConsumo: nuevoConsumo,
+    nuevoCosto: nuevoCosto,
+    ahorroMensual: ahorroMensual,
+    ahorroAnual: ahorroAnual,
+    produccionMensual: produccionFinal,
   }
 }
+
+// 🆕 FUNCIÓN PARA CALCULAR DATOS FTV DE UN SISTEMA
+// function calcularDatosFTV(sistema, consumoOriginal) {
+//   // Costo mensual sin sistema FTV
+//   const costoMensualSinSFV = calcularCostoProgresivo(consumoOriginal)
+
+//   // Nuevo consumo con sistema FTV (solo para sistemas ON GRID y HIBRIDO)
+//   let nuevoConsumoMensual = consumoOriginal
+//   let nuevoCostoMensual = costoMensualSinSFV
+//   let ahorroMensualReal = 0
+//   let ahorroAnualReal = 0
+
+//   if (sistema.type === "Sistema de ahorro energetico" || sistema.type === "Sistema de Ahorro + Respaldo") {
+//     // Calcular nuevo consumo restando la producción del sistema
+//     nuevoConsumoMensual = Math.max(0, consumoOriginal - sistema.produccionMensual)
+//     // Calcular nuevo costo mensual con el nuevo consumo
+//     nuevoCostoMensual = calcularCostoProgresivo(nuevoConsumoMensual)
+//     // Calcular ahorro real
+//     ahorroMensualReal = costoMensualSinSFV - nuevoCostoMensual
+//     ahorroAnualReal = ahorroMensualReal * 12
+//   }
+
+//   return {
+//     costoMensualSinSFV,
+//     nuevoConsumoMensual,
+//     nuevoCostoMensual,
+//     ahorroMensualReal,
+//     ahorroAnualReal,
+//   }
+// }
 
 // Inicialización cuando el DOM está listo
 document.addEventListener("DOMContentLoaded", () => {
@@ -1706,7 +1756,7 @@ function abrirWhatsApp() {
 // }
 
 function validarEmail(email) {
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  const regex = /^[^\s@]+@[^\s@]+$/
   return regex.test(email)
 }
 
@@ -1773,7 +1823,7 @@ function getSavingsOrEmergencyMessage(sistema, consumo) {
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; font-size: 0.8rem;">
           <div>
             <span style="color: #64748b;">Costo actual mensual:</span>
-            <div style="font-weight: 600; color: #dc2626;">${formatearMoneda(datosFTV.costoMensualSinSFV)}</div>
+            <div style="font-weight: 600; color: #dc2626;">${formatearMoneda(datosFTV.costoActual)}</div>
           </div>
           <div>
             <span style="color: #64748b;">Consumo original:</span>
@@ -1781,21 +1831,21 @@ function getSavingsOrEmergencyMessage(sistema, consumo) {
           </div>
           <div>
             <span style="color: #64748b;">Nuevo consumo:</span>
-            <div style="font-weight: 600; color: #059669;">${Math.round(datosFTV.nuevoConsumoMensual)} kWh</div>
+            <div style="font-weight: 600; color: #059669;">${Math.round(datosFTV.nuevoConsumo)} kWh</div>
           </div>
           <div>
             <span style="color: #64748b;">Nuevo costo mensual:</span>
-            <div style="font-weight: 600; color: #059669;">${formatearMoneda(datosFTV.nuevoCostoMensual)}</div>
+            <div style="font-weight: 600; color: #059669;">${formatearMoneda(datosFTV.nuevoCosto)}</div>
           </div>
         </div>
       </div>
       <div class="savings-item">
         <span class="savings-label">Ahorro mensual:</span>
-        <span class="savings-value">${formatearMoneda(datosFTV.ahorroMensualReal)}</span>
+        <span class="savings-value">${formatearMoneda(datosFTV.ahorroMensual)}</span>
       </div>
       <div class="savings-item">
         <span class="savings-label">Ahorro anual:</span>
-        <span class="savings-value">${formatearMoneda(datosFTV.ahorroAnualReal)}</span>
+        <span class="savings-value">${formatearMoneda(datosFTV.ahorroAnual)}</span>
       </div>
     </div>
   `
@@ -1992,8 +2042,8 @@ function generarPDFSistema(sistema, datosCliente) {
     } else {
       const datosFTV = calcularDatosFTV(sistema, datosCliente.consumo)
       doc.text("✓ Ahorro en factura eléctrica", 20, yPos)
-      doc.text(`Ahorro mensual: ${formatearMoneda(datosFTV.ahorroMensualReal)}`, 20, yPos + 6)
-      doc.text(`Ahorro anual: ${formatearMoneda(datosFTV.ahorroAnualReal)}`, 20, yPos + 12)
+      doc.text(`Ahorro mensual: ${formatearMoneda(datosFTV.ahorroMensual)}`, 20, yPos + 6)
+      doc.text(`Ahorro anual: ${formatearMoneda(datosFTV.ahorroAnual)}`, 20, yPos + 12)
     }
 
     // 📝 NOTA ADICIONAL - IGUAL AL OTRO SCRIPT
@@ -2194,11 +2244,11 @@ function mostrarSistemasRecomendados(consumo) {
 
     return {
       consumoActual: consumoActual,
-      consumoNuevo: Math.round(datosFTV.nuevoConsumoMensual),
-      ahorro: Math.round(consumoActual - datosFTV.nuevoConsumoMensual),
-      costoActual: datosFTV.costoMensualSinSFV,
-      costoNuevo: datosFTV.nuevoCostoMensual,
-      ahorroEconomico: datosFTV.ahorroMensualReal,
+      consumoNuevo: Math.round(datosFTV.nuevoConsumo),
+      ahorro: Math.round(consumoActual - datosFTV.nuevoConsumo),
+      costoActual: calcularCostoProgresivo(consumoActual),
+      costoNuevo: datosFTV.nuevoCosto,
+      ahorroEconomico: datosFTV.ahorroMensual,
     }
   }
 
@@ -2241,6 +2291,8 @@ function mostrarSistemasRecomendados(consumo) {
   elementos.sistemasGrid.innerHTML = sistemasRecomendados
     .map((sistema) => {
       const datos = calcularConsumoYAhorro(sistema, consumo)
+      const roi = calcularROI(sistema, datos.ahorroEconomico * 12)
+
       return `
         <div class="sistema-card">
           <div class="sistema-card-header">
@@ -2314,6 +2366,18 @@ function mostrarSistemasRecomendados(consumo) {
                 <span class="price-label">Inversión (Incluye instalación):</span>
                 <span class="price-value price-inversion">${formatearMoneda(sistema.price)}</span>
               </div>
+              ${
+                roi !== null
+                  ? `
+                <div class="roi-container">
+                  <div class="roi-badge ${getBadgeClass(sistema.type)}">
+                    <i class="fas fa-chart-line"></i>
+                    Retorno de Inversión: ${roi} AÑOS
+                  </div>
+                </div>
+                `
+                  : ""
+              }
             </div>
             <button class="btn-cotizar" onclick="generarPDFSistema(${JSON.stringify(sistema).replace(/"/g, "&quot;")}, datosCalculados)">
               <i class="fas fa-file-pdf"></i>
@@ -2511,7 +2575,7 @@ async function enviarDatosAPowerAutomate(datos) {
 //       produccionAnual: 0,
 //       produccionMensual: 0,
 //       cantidadPaneles: 0,
-//       areaRequerida: 0.0,
+//        areaRequerida: 0.0,
 //       nuevoConsumoMensual: 0,
 //       nuevoCostoMensual: 0.0,
 //       ahorroMensual: 0.0,
